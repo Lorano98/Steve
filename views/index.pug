@@ -1,6 +1,16 @@
 extends layout
 
 block content 
+    head
+        title Pug
+        script(type='text/javascript').
+            if (foo) bar(1 + 5)
+    body
+        h1 Pug - node template engine
+        #container.col
+            
+        h1 Steve Love <3
+        img(src="images/steve.jpg")
     // Heading Row
     .row.gy-4.gx-lg-5.align-items-center.mt-5
         .col-lg-7
