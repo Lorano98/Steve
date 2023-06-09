@@ -22,24 +22,32 @@ var layerControl = L.control.layers(baseMaps).addTo(map);
 
 addGeoJSONToMap(
   "https://geodienste.hamburg.de/HH_WFS_Radverkehrsnetz?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=radwege_fahrradstrasse&OUTPUTFORMAT=application/geo%2bjson&srsName=EPSG:4326",
-  "Fahrradnetz"
+  "Fahrradnetz",
+  {
+    style: {
+      color: "red",
+      weight: 3,
+    },
+  }
 );
-addGeoJSONToMap(
-  "https://geodienste.hamburg.de/HH_WFS_Strategisches_Strassennetz?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=app:strategisches_strassennetz&OUTPUTFORMAT=application/geo%2bjson&srsName=EPSG:4326",
-  "Verkehrsnetz"
-);
+addGeoJSONToMap("NICHT_OEFFNEN.json", "Verkehrsnetz", {
+  style: {
+    color: "blue",
+    weight: 1,
+  },
+});
 
 /**
  * adds trainings data to map
  * @param {*} url
  */
-function addGeoJSONToMap(url, name) {
+function addGeoJSONToMap(url, name, style) {
   // this requests the file and executes a callback with the parsed result once it is available
   let layerArray = [];
   fetchJSONFile(url, function (data) {
     data.features.forEach((element) => {
       layerArray.push(
-        L.geoJSON(element).bindPopup(function (layer) {
+        L.geoJSON(element, style).bindPopup(function (layer) {
           let text =
             "<b>Straßenname:</b> " +
             layer.feature.properties.strassenname +
