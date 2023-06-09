@@ -1,4 +1,19 @@
-var map = L.map("map").setView([53.55, 9.992], 12);
+function getposition() {
+  if ("geolocation" in navigator) {
+    // Geolocation wird unterstützt
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      map.setView([latitude, longitude], 12);
+      console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+    });
+  } else {
+    // Geolocation wird nicht unterstützt
+    console.log("Geolocation wird nicht unterstützt.");
+  }
+}
+
+var map = L.map("map").setView([53.55, 9.992], 5);
 
 var osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
