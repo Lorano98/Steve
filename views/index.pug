@@ -1,12 +1,14 @@
 extends layout
 
 block content 
-  head
-      title Pug
-      script(type='text/javascript').
-          if (foo) bar(1 + 5)
-  body
-      .row.gy-4.gx-lg-3.mt-3 
-        .col-lg-8.col-xs-12.mb-3
-            .card.text-dark.shadow.p-4
-                .leaflet-container#map
+    head
+        title Pug
+        script(type='text/javascript').
+            if (foo) bar(1 + 5)
+    body
+        h1 Pug - node template engine
+        #container.col
+            p You are amazing
+            p Pug is a terse and simple templating language.
+        h1 Steve Love <3
+        img(src="images/steve.jpg")
