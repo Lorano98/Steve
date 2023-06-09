@@ -4,7 +4,7 @@ function getposition() {
     navigator.geolocation.getCurrentPosition(function (position) {
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
-      map.setView([latitude, longitude], 12);
+      map.setView([latitude, longitude], 16);
       console.log("Latitude: " + latitude + ", Longitude: " + longitude);
     });
   } else {
@@ -13,7 +13,7 @@ function getposition() {
   }
 }
 
-var map = L.map("map").setView([53.55, 9.992], 5);
+var map = L.map("map").setView([53.55, 9.992], 12);
 
 var osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
@@ -49,8 +49,19 @@ addGeoJSONToMap("NICHT_OEFFNEN.json", "Verkehrsnetz", {
   style: {
     color: "blue",
     weight: 1,
+    opacity: 0.5,
   },
 });
+addGeoJSONToMap(
+  "https://geodienste.hamburg.de/HH_WFS_Radverkehrsnetz?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=de.hh.up:radwege_streifen&OUTPUTFORMAT=application/geo%2bjson&srsName=EPSG:4326",
+  "Fahrradwegstreifen",
+  {
+    style: {
+      color: "orange",
+      weight: 2,
+    },
+  }
+);
 
 /**
  * adds trainings data to map
