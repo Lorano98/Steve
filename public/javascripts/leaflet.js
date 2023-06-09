@@ -40,7 +40,7 @@ addGeoJSONToMap(
   "Fahrradnetz",
   {
     style: {
-      color: "red",
+      color: "#b80aa1",
       weight: 3,
     },
   }
@@ -57,7 +57,17 @@ addGeoJSONToMap(
   "Fahrradwegstreifen",
   {
     style: {
-      color: "orange",
+      color: "#0288da",
+      weight: 2,
+    },
+  }
+);
+addGeoJSONToMap(
+  "https://geodienste.hamburg.de/HH_WFS_Radverkehrsnetz?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=de.hh.up:radwege_radweg&OUTPUTFORMAT=application/geo%2bjson&srsName=EPSG:4326",
+  "Fahrradwegstreifen",
+  {
+    style: {
+      color: "#c79a4a",
       weight: 2,
     },
   }
@@ -67,7 +77,7 @@ addGeoJSONToMap(
  * adds trainings data to map
  * @param {*} url
  */
-function addGeoJSONToMap(url, name, style) {
+https: function addGeoJSONToMap(url, name, style) {
   // this requests the file and executes a callback with the parsed result once it is available
   let layerArray = [];
   fetchJSONFile(url, function (data) {
