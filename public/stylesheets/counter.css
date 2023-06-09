@@ -1,0 +1,13 @@
+
+  #pizza{
+    border: 5px outset #1C6EA4;
+    border-radius: 0px 30px 0px 30px;
+    padding: 5px;
+  }
+
+  #food{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 50px
+  }
