@@ -71,6 +71,8 @@ function addGeoJSONToMap(url, name, style) {
   // this requests the file and executes a callback with the parsed result once it is available
   let layerArray = [];
   fetchJSONFile(url, function (data) {
+    // JSON in Datei speichern
+    //saveJSONToFile(data, "output.json");
     data.features.forEach((element) => {
       layerArray.push(
         L.geoJSON(element, style).bindPopup(function (layer) {
@@ -109,4 +111,29 @@ function fetchJSONFile(path, callback) {
   };
   httpRequest.open("GET", path);
   httpRequest.send();
+}
+
+function saveJSONToFile(data, filename) {
+  const jsonData = JSON.stringify(data);
+
+  // Erzeuge einen Blob mit dem JSON-Daten
+  const blob = new Blob([jsonData], { type: "application/json" });
+
+  // Erzeuge eine URL für den Blob
+  const url = URL.createObjectURL(blob);
+
+  // Erzeuge einen Link
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+
+  // Füge den Link zum Dokument hinzu und klicke ihn an
+  document.body.appendChild(link);
+  link.click();
+
+  // Entferne den Link vom Dokument
+  document.body.removeChild(link);
+
+  // Entferne die URL des Blobs
+  URL.revokeObjectURL(url);
 }
