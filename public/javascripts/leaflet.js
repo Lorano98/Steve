@@ -73,6 +73,18 @@ addGeoJSONToMap(
   }
 );
 
+/*saveJSONToFile(
+  "https://geodienste.hamburg.de/HH_WFS_Stadtradeln?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&typename=de.hh.up:stadtradeln2018,de.hh.up:stadtradeln2019,de.hh.up:stadtradeln2020",
+  "Alle",
+  {
+    style: {
+      color: "orange",
+      weight: 2,
+    },
+  }
+);
+*/
+
 /**
  * adds trainings data to map
  * @param {*} url
