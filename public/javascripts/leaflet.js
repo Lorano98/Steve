@@ -37,7 +37,7 @@ var layerControl = L.control.layers(baseMaps).addTo(map);
 
 addGeoJSONToMap(
   "https://geodienste.hamburg.de/HH_WFS_Radverkehrsnetz?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=radwege_fahrradstrasse&OUTPUTFORMAT=application/geo%2bjson&srsName=EPSG:4326",
-  "Fahrradnetz",
+  "Fahrradstrassen",
   {
     style: {
       color: "#b80aa1",
@@ -64,7 +64,7 @@ addGeoJSONToMap(
 );
 addGeoJSONToMap(
   "https://geodienste.hamburg.de/HH_WFS_Radverkehrsnetz?SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=de.hh.up:radwege_radweg&OUTPUTFORMAT=application/geo%2bjson&srsName=EPSG:4326",
-  "Fahrradwegstreifen",
+  "Fahrradwege",
   {
     style: {
       color: "#c79a4a",
@@ -84,7 +84,24 @@ addGeoJSONToMap(
   }
 );
 */
+/*Legend specific*/
+var legend = L.control({ position: "bottomleft" });
 
+legend.onAdd = function (map) {
+  var div = L.DomUtil.create("div", "legend");
+  div.innerHTML += "<h4>Strassennetze</h4>";
+  div.innerHTML +=
+    '<i style="background: blue"></i><span>Verkehrsnetz</span><br>';
+  div.innerHTML +=
+    '<i style="background: #c79a4a"></i><span>Radwege</span><br>';
+  div.innerHTML +=
+    '<i style="background: #0288da"></i><span>Fahrradwegstreifen</span><br>';
+  div.innerHTML +=
+    '<i style="background: #b80aa1"></i><span>Fahrradstrassen</span><br>';
+  return div;
+};
+
+legend.addTo(map);
 /**
  * adds trainings data to map
  * @param {*} url
@@ -96,16 +113,42 @@ https: function addGeoJSONToMap(url, name, style) {
     // JSON in Datei speichern
     //saveJSONToFile(data, "output.json");
     data.features.forEach((element) => {
-      layerArray.push(
-        L.geoJSON(element, style).bindPopup(function (layer) {
-          let text =
-            "<b>Straßenname:</b> " +
-            layer.feature.properties.strassenname +
-            "<br>";
-          text += "<b>Breite:</b> " + layer.feature.properties.breite + "m";
-          return text;
-        })
-      );
+      if (name == "Verkehrsnetz") {
+        layerArray.push(
+          L.geoJSON(element, style).bindPopup(function (layer) {
+            let text =
+              "<b>Straßenname:</b> " +
+              layer.feature.properties.strassenname +
+              "<br>";
+            text +=
+              "<b>Streifenanzahl in Stationsrichtung:</b> " +
+              layer.feature.properties
+                .fahrstreifenanzahl_in_stationierungsrichtung +
+              "</br>";
+            text +=
+              "<b>Streifenanzahl gegen Stationsrichtung:</b> " +
+              layer.feature.properties
+                .fahrstreifenanzahl_gegen_stationierungsrichtung +
+              "</br>";
+            text +=
+              "<b>Streifenanzahl in beide Richtungen:</b> " +
+              layer.feature.properties.fahrstreifenanzahl_in_beide_richtungen +
+              "</br>";
+            return text;
+          })
+        );
+      } else {
+        layerArray.push(
+          L.geoJSON(element, style).bindPopup(function (layer) {
+            let text =
+              "<b>Straßenname:</b> " +
+              layer.feature.properties.strassenname +
+              "<br>";
+            text += "<b>Breite:</b> " + layer.feature.properties.breite + "m";
+            return text;
+          })
+        );
+      }
     });
 
     let group = L.layerGroup(layerArray).addTo(map);
