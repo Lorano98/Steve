@@ -24,12 +24,17 @@ html
     //street names
     script(type="text/javascript" src="https://cdn.rawgit.com/Viglino/Canvas-TextPath/master/ctxtextpath.js")
 
+    // Favicon
+    link(rel='icon' sizes='16x16 32x32 48x48 64x64' href='/images/icon.png')
+
 
   body.d-flex.flex-column.min-vh-100
     // Responsive navbar
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
       .container.px-5
-        a.navbar-brand(href='/') Steve 
+        a.navbar-brand(href='/') 
+          img.img-fluid.rounded.me-1.d-inline-block.align-text-top(src="/images/icon.png" width="50" height="50") 
+        a.navbar-brand(href='/') Fit Grid 
         button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #food
@@ -41,9 +46,13 @@ html
         #navbarSupportedContent.collapse.navbar-collapse
           ul.navbar-nav.ms-auto.mb-2.mb-lg-0
             li.nav-item
-              a.nav-link.active(aria-current='page' href='/') Home
+              a.nav-link.active(aria-current='page' href='/')
+                img.img-fluid.rounded.me-1.d-inline-block.align-text-center(src="/images/house.png" width="30" height="30")
+                text   Home
             li.nav-item
-              a.nav-link(href='/map') Karte
+              a.nav-link(href='/map')
+                img.img-fluid.rounded.me-1.d-inline-block.align-text-center(src="/images/compass.png" width="30" height="30")
+                text   Karte
             li.nav-item            
     // Page Content
     .container(style="margin-top:100px")
