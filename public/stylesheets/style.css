@@ -14,3 +14,14 @@ a {
   max-height: 100%;
   margin: 0;
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #005288 !important;
+  border-color: #005288 !important;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #01406b !important;
+  border-color: #005288 !important;
+}
