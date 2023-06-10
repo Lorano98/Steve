@@ -1,0 +1,18 @@
+"properties": {
+        "von_netzknoten": "212500001",
+        "nach_netzknoten": "212500002",
+        "von_station": 0,
+        "bis_station": 3862,
+        "klasse": "G",
+        "wegenummer": "10223",
+        "strassenname": "Bedarfsumleitungen A7 (SH)",
+        "landesschluessel": 1,
+        "kreisschluessel": 9,
+        "gemeindeschluessel": 999,
+        "abschnittslaenge": 3862,
+        "ast": 0,
+        "fahrstreifenanzahl_in_stationierungsrichtung": 1,
+        "fahrstreifenanzahl_in_beide_richtungen": 0,
+        "fahrstreifenanzahl_gegen_stationierungsrichtung": 1,
+        "bahnigkeit": 1,
+        "wegeart": "unbekannt"
